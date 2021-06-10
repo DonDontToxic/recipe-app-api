@@ -9,3 +9,11 @@ before_scripts: pip install docker-compose
 
 script:
   - docker-compose run app sh -c "python manage.py test && flake8"
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "768d3784-3882-494f-9d61-d58bbfc6bd22"
+  app: "favrecipe-be"
+  on:
+    branch: main
