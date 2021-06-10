@@ -28,3 +28,4 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=supersecretpassword
       - POSTGRES_PORT=5432
+      - POSTGRES_HOST=postgres
