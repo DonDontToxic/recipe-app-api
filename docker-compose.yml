@@ -8,11 +8,11 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
-    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; npm start'
-    command: >
-      sh -c "python manage.py wait_for_db &&
-             python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python manage.py migrate'
+    # command: >
+    #   sh -c "python manage.py wait_for_db &&
+    #          python manage.py migrate &&
+    #          python manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_HOST=db
       - DB_NAME=app
