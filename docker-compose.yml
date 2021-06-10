@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
   app:
@@ -8,6 +8,7 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; npm start'
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -23,9 +24,13 @@ services:
 
   db:
     image: postgres:10-alpine
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=supersecretpassword
       - POSTGRES_PORT=5432
       - POSTGRES_HOST=postgres
+  # volumes:
+  #   database:
