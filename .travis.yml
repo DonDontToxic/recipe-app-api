@@ -1,19 +1,16 @@
 language: python
 python:
-  - "3.6"
-
+- '3.6'
 services:
-  - docker
-
+- docker
 before_scripts: pip install docker-compose
-
 script:
-  - docker-compose run app sh -c "python manage.py wait_for_db && python manage.py test && flake8"
-
+- docker-compose run app sh -c "python manage.py wait_for_db && python manage.py test
+  && flake8"
 deploy:
   provider: heroku
   api_key:
-    secure: "768d3784-3882-494f-9d61-d58bbfc6bd22"
-  app: "favrecipe-be"
-  on:
+    secure: vUUA/8SrG3Bz5jReWfDCakO/GyZmmub+DXhFLq+2k/xnHoVFHbu577tEjoMZeGCbjN2Exn+/Gxyaou/cyzZZgfkrq4wgb7fIvEv5cRCt0Phz/TD55L4uPuCvs6D/IJ0V5qlP0UrDP/C5x1d33K78Et4+6+9MpBMg23Uya59zmjTW+SLSCrs43Wx7OSnB4NekM6Ibe5FkVmr9lV7RZiFb4yuNJ8j4lWTHwdCj+dLO5iFPkEJfqCEHnHn6MaRavx3rvdxqRvqlng4Bxud8BJrGq8BA8JyfaL4Ap3468jXiyPWpFrOEzdUK41qe+3SW+CgQdohlD7CgJcclaVW7Mw5gOdkuYPQUBBiIsufmKRaMMColQgb5L1OrVl+SpSldZn9E4OBC2MHDz2UqtbB/FNan9TUMIZCNQtqkit+qvJBYaxcgWReRGUM4iq2u5a+ASL+IvgEixPS2JLkP6jFCU0mRmdbuPK//hcSxIpVX7tbQ36EjHLvVXw2BzGNHk9dkFTHtd47TH6202KL03nxwYIu4yI7Zu8uJyPgGWReBi2ecOZIBwfXyAoxuqBJLqqJKf6a9bRz25s/GRQL7au7yjcY4qpm10X3tNbThkd6mmMC51gu0lsfTT3Lhwkiq0hkVSzWr6G5hAGl8AygtygLu1CFRMqgG/3MiZACEnUC2tM671lo=
+  app: favrecipe-be
+  true:
     branch: main
