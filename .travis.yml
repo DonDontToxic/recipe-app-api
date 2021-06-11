@@ -7,11 +7,18 @@ before_scripts: pip install docker-compose
 script:
   - docker-compose run app sh -c "python manage.py wait_for_db && python manage.py test && flake8"
 deploy:
-  provider: heroku
-  api_key:
-    secure: Mc9/t6Yiz6cFl6erla/SDY/pBspJLuT9ZQdyMvOiz3pFV1G+SxLv0zvtownfxEsAQaP4QqIGeKG8KMrhz+ElQE1XtQxUOYYEHA/HQiUEOnEm903pNd95j4ievqO4BYQ5Uj4QHIwQORWTELDy88IKwfftaklASL3DzY5xSiqRkCZsGpZJNh9E+WuvdsCfnpnX3dj8oxgOlFJFhaDe9twxFck9sH4/g/tvzjeWXTlAJ73WwVhrjIczaCfT3/ywqABmt//cu3WTBobSDgsyN7z1wmdUZ13bPOhomkjID60SE5sWZ/sVe3s9hOqHo9PFpk9HFfHc9O1nMCxLvDaiVVETNAUZbTjNyi1O+2bXySgKNswOiC6aUCVC/R913z1S1jebYK/HBisBoz6kDUmrLBes7UFM7O0R2ScVQ2s+9zSVvHDQ6Y8wykbDFTGCXt0C1PmHidx65cgWqaR9SjCc4+b5XX+1MFPQcD1CoRDE/4DWKNs6UThyUpDD1ShNz8Gj9VFKoXXMPctr4ay4FHjUtxkkQQhniH8P+YCiFAg8RjNbOgh63YHKRUiOKjBHDs0A6YRS++tzDDKTXNm/SevnURG9RqnLnQEQFF5u6XCd1OPXO9KdFY98GfzR4BTbFPxVB30b6M88nHZWjfiVvndxJOaRNXNobad23k9t4jvg0Wv8ZjM=
-  app: favrecipe-be
-  true:
-    repo: DonDontToxic/recipe-app-api
-    branch: main
-  skip_cleanup: 'true'
+    provider: script
+    script: bash docker_push.sh
+    skip_cleanup: true
+    on:
+        branch: master
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: Mc9/t6Yiz6cFl6erla/SDY/pBspJLuT9ZQdyMvOiz3pFV1G+SxLv0zvtownfxEsAQaP4QqIGeKG8KMrhz+ElQE1XtQxUOYYEHA/HQiUEOnEm903pNd95j4ievqO4BYQ5Uj4QHIwQORWTELDy88IKwfftaklASL3DzY5xSiqRkCZsGpZJNh9E+WuvdsCfnpnX3dj8oxgOlFJFhaDe9twxFck9sH4/g/tvzjeWXTlAJ73WwVhrjIczaCfT3/ywqABmt//cu3WTBobSDgsyN7z1wmdUZ13bPOhomkjID60SE5sWZ/sVe3s9hOqHo9PFpk9HFfHc9O1nMCxLvDaiVVETNAUZbTjNyi1O+2bXySgKNswOiC6aUCVC/R913z1S1jebYK/HBisBoz6kDUmrLBes7UFM7O0R2ScVQ2s+9zSVvHDQ6Y8wykbDFTGCXt0C1PmHidx65cgWqaR9SjCc4+b5XX+1MFPQcD1CoRDE/4DWKNs6UThyUpDD1ShNz8Gj9VFKoXXMPctr4ay4FHjUtxkkQQhniH8P+YCiFAg8RjNbOgh63YHKRUiOKjBHDs0A6YRS++tzDDKTXNm/SevnURG9RqnLnQEQFF5u6XCd1OPXO9KdFY98GfzR4BTbFPxVB30b6M88nHZWjfiVvndxJOaRNXNobad23k9t4jvg0Wv8ZjM=
+#   app: favrecipe-be
+#   true:
+#     repo: DonDontToxic/recipe-app-api
+#     branch: main
+#   skip_cleanup: 'true'
+

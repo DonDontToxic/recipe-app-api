@@ -32,3 +32,15 @@ services:
       - POSTGRES_PASSWORD=supersecretpassword
       - POSTGRES_PORT=5432
       - POSTGRES_HOST=postgres
+
+  web:
+    build: .
+#        container_name: webapp-dpdth
+    image: webapp-dpdth
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python3 manage.py runserver 0.0.0.0:8000'
+    volumes:
+        - .:/app
+    ports:
+        - "8000:8000"
+    depends_on:
+        - db

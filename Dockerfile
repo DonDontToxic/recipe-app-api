@@ -18,4 +18,10 @@ RUN mkdir -p /vol/web/static
 RUN adduser -D user
 RUN chown -R user:user /vol/
 RUN chmod -R 755 /vol/web
+
+# collect static files
+RUN python manage.py collectstatic --noinput
+
+CMD gunicorn airline.wsgi:application --bind 0.0.0.0:$PORT
+
 USER user
