@@ -1,8 +1,8 @@
 #!/bin/bash
 
 sudo docker login --username $HEROKU_DOCKER_USERNAME --password $HEROKU_AUTH_TOKEN registry.heroku.com
-sudo docker tag webapp-dpdth:latest registry.heroku.com/webapp-dpdth/web
-if [ $TRAVIS_BRANCH == "master" ] && [ $TRAVIS_PULL_REQUEST == "false" ]; then sudo docker push registry.heroku.com/webapp-dpdth/web; fi
+sudo docker tag favrecipe-be:latest registry.heroku.com/favrecipe-be/web
+if [ $TRAVIS_BRANCH == "main" ] && [ $TRAVIS_PULL_REQUEST == "false" ]; then sudo docker push registry.heroku.com/favrecipe-be/web; fi
 
 chmod +x heroku-container-release.sh
 sudo chown $USER:docker ~/.docker

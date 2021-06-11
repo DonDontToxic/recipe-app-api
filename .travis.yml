@@ -11,7 +11,7 @@ deploy:
     script: bash docker_push.sh
     skip_cleanup: true
     on:
-        branch: master
+        branch: main
 # deploy:
 #   provider: heroku
 #   api_key:
