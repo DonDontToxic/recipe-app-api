@@ -1,17 +1,15 @@
 language: python
 python:
-- '3.6'
+  - '3.6'
 services:
-- docker
+  - docker
 before_scripts: pip install docker-compose
 script:
-- docker-compose run app sh -c "python manage.py wait_for_db && python manage.py test
-  && flake8"
+  - docker-compose run app sh -c "python manage.py wait_for_db && python manage.py test && flake8"
 deploy:
   provider: heroku
   api_key:
-    secure: xuj9pUVLci6LFiVmpe30h5oPZfDDpyZ70cVrcmOpqT8/04Lqo2ivbMPM/7RMjuHAHT0Oh36iH4vqdZwO+dlbHxyvg/9eKoFucNWmIo4Ybn/sensoS2sVomYbGAaMkPfp5zPMkY7xqzCE6tHfx5MMN4Qxp5VWU1SjUlaSB1HkjTuxl660uhPeBRxn17YBDn6T7IhGCBNiquhJCmLTJDLDHbj0rrjadbQdX1ME19v//1nQ22Sk0jmfpuJmLylfhIQciNJwzwAOKuSj00i910BtlxWFtDsRBthGMuJfWP8DBWeUNARY9PetGNAunrXJU32WiReIos8vK0QsgbV3kD6dM9/rjonxtfpB+tZujOWicM7n0fkCLUZu0RE8QIPvgRABf75nMTr5/+mnFp1Xj1J+S+b2WS4mX+4VVxzJg5MuUHalgh/Fdn3CwoBXHMw1/qkF5+aChWkPhu8kWrUOK0ZKPM2mn1dlDLHzJrvw9dYZuhriXrYbBH6CWuWCrEEFOPnwA7WJrtDo/kdyEPaFHDk4yM8WhbV4L5ss6q9b6PZPFMCO5HY5HttSkstA/ExQbWZIeAVGJH4pFFwnF9/c0zrZnWUgyFXJLcVmmlXJuyuJNsSlnrZTptUjYImv6vvi9Pugw2EcMKZWS8inDBDF6AD+Z92SkzXzNdTzANjtI28XakKY=
-    app: favrecipe-be
+    secure: auNq7bj3ZmjtlMXL8ncsit6ilr9Jlynux0JVVvLQdkFflhkpPvHWjoXJdzGw3E6rMPROO1BPGDACqznQlc/NqEMxEZHozo9d46IXlZBBjvCdvHxnrAHQLjMls05pvtLCMcU5u6jOxOprYXN9A3i8PzTdWCVLr9VwdZyhHqLI1N/I7oMLqtvN3nG1KKymBugMG+qGlzsatva+WT3kgWyBtID3vOGy5cgWc/A6l8/YfFhdXZk1wN8h5GTvdfbANUMLNC/8dPearewaUeS3J5yK3Jof0jCS0iyxzSgIqTv3gYB6WZUMLk/45GpzpUrC10wU47aDAx1LNMjYK0S4YpziXwEU2nVWGGfU9ZYXIritjQzrt5ni1SOl2gxQk1bC5jbQ15iYvavX8T7XvwqIhV+ok+XRzH/N+tzb1aAn40eo9L4p7FeVPR4TrGwTLtatg8Qq3MfKLyVPWpBLwEPfgvbkGl+G10UiIKt499V/qGNmTmX4AtFnYOTJXUroTjH4z2iZSzR70PaLL+MlZxlNwdD3Io6tHeKdAY3I3PZLqXAUKc2gB+4S+S/EdvnmPJVwcI0gMyxmWFQntSFbtHTh82cJrS5GJKt63TeiaDh67exxnmgRY+OuwzeAByfqN7RLrza6TJpgnpVC+E3cQtoYD5HsYm4bA4vDgHVjRavzMj4yzvo=
   on:
     repo: DonDontToxic/recipe-app-api
     branch: main
