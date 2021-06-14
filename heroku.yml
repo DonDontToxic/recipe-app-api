@@ -2,4 +2,5 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: gunicorn recipe-api-app.wsgi
+  # web: gunicorn recipe-api-app.wsgi
+  web: docker-compose up
