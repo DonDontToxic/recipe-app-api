@@ -1,6 +1,8 @@
 build:
   docker:
     web: Dockerfile
+release:
+  command: 
+    - python manage.py migrate --noinput
 run:
-  # web: gunicorn recipe-api-app.wsgi
-  web: docker-compose up
+  web: gunicorn app.wsgi
