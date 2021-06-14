@@ -1,10 +1,5 @@
 build:
   docker:
     web: Dockerfile
-    worker: worker/Dockerfile
-release:
-  image: worker
-  command:
-    - python manage.py migrate --noinput
 run:
   web: gunicorn app.wsgi
